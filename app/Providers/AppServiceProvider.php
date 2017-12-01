@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use App\Events\MentionSaved;
+use App\Events\LikeSaved;
+use App\Like;
 use App\Mention;
+use App\Notification;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Mention::observe(MentionSaved::class);
+        Notification::observe(LikeSaved::class);
+        Like::observe(LikeSaved::class);
     }
 
     /**

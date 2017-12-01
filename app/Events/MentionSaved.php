@@ -5,24 +5,22 @@ namespace App\Events;
 
 
 use App\Mention;
-use App\Notification;
-use App\Repositories\User\UserInterface;
+use App\Notifications\TwitterNotification;
+
 
 class MentionSaved
 {
 	/**
 	 * Creates Notification when user mentions other
 	 * @param Mention $mention
-	 * @param UserInterface $userRepo
 	 */
-	public function saved(Mention $mention, UserInterface $userRepo)
+	public function saved(Mention $mention)
 	{
+		$userRepo = app()->make('App\Repositories\User\UserInterface');
 		$user = $userRepo->searchUser(['id' => $mention->mention_id]);
+		$userToNotify = $userRepo->searchUser(['id' => $mention->user_id]);
 
-		$notification = new Notification();
-		$notification->notification = $user->username . ' has mentioned you in his tweet';
-		$notification->user_id = $mention->user_id;
-		$notification->save();
+		$userToNotify->notify(new TwitterNotification($user->username . ' has mentioned you in his tweet'));
 
 	}
 }

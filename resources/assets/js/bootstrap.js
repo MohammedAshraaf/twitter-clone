@@ -49,10 +49,12 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'your-pusher-key'
+    key: 'f0c018d6d4154627066a',
+    cluster: 'eu',
+    encrypted: true
 });
 
-Echo.private(`notification.${orderId}`)
-    .listen('ShippingStatusUpdated', (e) => {
-    console.log(e.update);
-});
+Echo.private('App.User.' + userId)
+    .notification((notification) => {
+        console.log(notification.type);
+    });

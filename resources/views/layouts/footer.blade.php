@@ -13,6 +13,7 @@
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button);
+    userId = '{{auth()->id()}}';
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
@@ -20,6 +21,7 @@
 
 <!-- AdminLTE App -->
 <script src="{{asset('js/adminlte.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.js')}}"></script>
 
 @yield("extra-js")
 </body>
