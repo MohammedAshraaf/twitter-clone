@@ -57,5 +57,5 @@ window.Echo = new Echo({
 
 Echo.private('App.User.' + userId)
     .notification((notification) => {
-        console.log(notification.data['notification']);
+        alert(notification.data['notification']);
     });
