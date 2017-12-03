@@ -8,6 +8,7 @@
     <div style="margin-bottom: 5%">
         <form action="{{route('tweet.create')}}" method="POST" role="form" id="profile">
             {{csrf_field()}}
+
             <div class="form-group {{($errors->has('tweet'))?'has-error':''}}">
                 <label for="tweet">{{trans('tweets.tweet')}}:</label>
                 <textarea name="tweet" class="form-control" id="tweet"></textarea>
@@ -21,8 +22,13 @@
                     </select>
                 </div>
                 {!! $errors->first('mention', '<p class="help-block">:message</p>') !!}
+
             </div>
-            <button type="submit" class="btn btn-primary">{{trans('general.submit')}}</button>
+            <div class="form-group">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Live Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            </div>
+            <button type="submit" class="btn btn-primary">{{trans('tweets.tweet')}}</button>
         </form>
     </div>
     @include('tweets.tweets')
