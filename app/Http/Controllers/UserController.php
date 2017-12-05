@@ -125,7 +125,7 @@ class UserController extends Controller
     public function follow($username, UserService $userService)
     {
     	// user not exists
-    	$user = $this->userRepo->searchUsername($username);
+    	$user = $this->userRepo->searchUsername($username, false);
     	if(! $user)
 	    {
 	    	abort(404);
