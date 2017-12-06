@@ -52,7 +52,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    console.log(data);
                     return {
                         results: $.map(data['results'], function (item) {
                             return {

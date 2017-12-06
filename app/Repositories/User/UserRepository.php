@@ -54,13 +54,15 @@ class UserRepository implements UserInterface
 	 */
 	public function searchUsername($user, $usePaginate = true, $paginate = 15)
 	{
+
 		$this->updateModel();
-		$user = $this->user->where('username', 'LIKE', "$user%")->where('id', '!=', Auth::id());
+
+		$user = $this->user->search($user);
 
 		// queries pagination
 		if($usePaginate)
 		{
-			return $user->simplePaginate($paginate);
+			return $user->paginate($paginate);
 		}
 
 		// single search

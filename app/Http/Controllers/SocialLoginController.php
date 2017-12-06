@@ -46,6 +46,9 @@ class SocialLoginController extends Controller
 			// All is good, create new user and log him in
 			$newUser = $userRepo->storeUser(['username' => $name, 'email' => $facebookUser->email, 'password' => $userService->generatePassword(), 'facebook_token' => $facebookUser->id]);
 
+			// add index to be used in search
+			$newUser->searchable();
+
 			Auth::login($newUser);
 
 			return redirect()->route('news.feed');
@@ -64,6 +67,9 @@ class SocialLoginController extends Controller
 
 		// Good Log him in
 		$newUser = $userRepo->storeUser(['username' => $name, 'email' => $facebookUser->email, 'password' => $userService->generatePassword(), 'facebook_token' => $facebookUser->id]);
+
+		// add index to be used in search
+		$newUser->searchable();
 
 		Auth::login($newUser);
 

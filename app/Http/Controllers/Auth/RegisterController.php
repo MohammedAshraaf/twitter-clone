@@ -47,6 +47,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+    	$data['username'] = str_replace(' ', '', $data['username']);
+
         return Validator::make($data, [
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
@@ -63,7 +65,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'username' => $data['username'],
+            'username' => str_replace(' ', '', $data['username']),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

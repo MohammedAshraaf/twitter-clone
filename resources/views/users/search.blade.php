@@ -11,6 +11,7 @@
                         <h3><a href="{{route('user.view', ['id' => $user->username])}}">{{$user->username}}</a></h3>
                     </div>
                 @endforeach
+                {{ $users->links() }}
             </div>
         </div>
     @else

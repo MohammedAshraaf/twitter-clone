@@ -11,8 +11,9 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/login/facebook', ['as' => 'login.facebook', 'uses' => 'SocialLoginController@loginFacebook']);
-Route::get('/login/facebook/ok', ['as' => 'login.facebook.done', 'uses' => 'SocialLoginController@facebookCallback']);
 
 Route::group(['middleware' =>  'auth'], function () {
 
@@ -48,5 +49,4 @@ Route::group(['middleware' =>  'auth'], function () {
 	Route::get('like/{tweet}' , ['as' => 'likes.like', 'uses' => 'LikeController@like']);
 });
 
-Auth::routes();
 
