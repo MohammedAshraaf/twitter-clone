@@ -21,7 +21,7 @@
 
 <!-- AdminLTE App -->
 <script src="{{asset('js/adminlte.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
 
 @yield("extra-js")
 </body>

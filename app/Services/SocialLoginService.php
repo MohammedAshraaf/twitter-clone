@@ -44,16 +44,15 @@ class SocialLoginService
 	public function matchExistedUser($name, $email)
 	{
 		$checkUserName =  $this->userRepo->searchUsername($name, false);
+		if($checkUserName)
+			return 'name';
 
 		$checkEmail =  $this->userRepo->searchUser(['email' => $email]);
 
-		if(!$checkUserName && !$checkEmail)
-		{
-			return false;
-		}
-		if($email)
+		if($checkEmail)
 			return 'email';
-		return 'name';
+
+		return false;
 	}
 
 

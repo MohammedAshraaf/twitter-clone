@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Events\NotificationSaved;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
@@ -14,7 +15,7 @@ class TwitterNotification extends Notification
 	/**
 	 * @var
 	 */
-	private $notification;
+	public $notification;
 
 	/**
 	 * Create a new notification instance.
@@ -25,6 +26,7 @@ class TwitterNotification extends Notification
     {
         //
 	    $this->notification = $notification;
+	    event(new NotificationSaved());
     }
 
     /**
@@ -50,7 +52,7 @@ class TwitterNotification extends Notification
 	public function toBroadcast($notifiable)
 	{
 		return new BroadcastMessage([
-			'notification' => $this->notificatio
+			'notification' => $this->notification
 		]);
 	}
 

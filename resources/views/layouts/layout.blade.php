@@ -1,7 +1,7 @@
 @include('layouts.header')
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper" id="app">
 
 
 <!-- Main content -->

@@ -43,7 +43,9 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
+
 import Echo from 'laravel-echo'
+
 
 window.Pusher = require('pusher-js');
 
@@ -53,8 +55,3 @@ window.Echo = new Echo({
     cluster: 'eu',
     encrypted: true
 });
-
-Echo.private('App.User.' + userId)
-    .notification((notification) => {
-        console.log(notification.type);
-    });
