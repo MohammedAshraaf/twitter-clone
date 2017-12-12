@@ -8,6 +8,7 @@ use App\Services\LikeService;
 use App\Services\TweetService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 
 class TweetController extends Controller
@@ -96,11 +97,12 @@ class TweetController extends Controller
 	 */
     public function destroy($id)
     {
-    	// user is trying to delete a tweet that he doesn't have!
-		if(!$this->tweetService->deleteTweet($id))
-		{
-			abort(403);
-		}
+	    $tweet = $this->tweetService->getTweetOrFail($id);
+	    if (Gate::denies('delete-tweet', $tweet))
+	    {
+		    abort(404);
+	    }
+    	$tweet->delete();
 		return redirect()->route('user.profile');
     }
 }
