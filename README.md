@@ -1,2 +1,2 @@
 # twitter-clone
-Small application that simulates twitter
+Small application that simulates twitter ( practicing )
