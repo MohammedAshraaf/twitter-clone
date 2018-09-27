@@ -1,2 +1,2 @@
 # twitter-clone
-Small application that simulates twitter ( practicing )
+Small Laravel application that simulates some of basic features of twitter ( practicing )
